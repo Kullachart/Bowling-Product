@@ -14,6 +14,9 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class ShowlistProduct extends AppCompatActivity implements View.OnClickListener {
 
     //Explicit
@@ -105,6 +108,39 @@ public class ShowlistProduct extends AppCompatActivity implements View.OnClickLi
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.d("BowlingV1", "JSON ===>" + s);
+
+            try {
+
+                JSONArray jsonArray = new JSONArray();
+                String[] titleStrings = new String[jsonArray.length()];
+                String[] descStrings = new String[jsonArray.length()];
+                String[] descShortStrings = new String[jsonArray.length()];
+                String[] priceStrings = new String[jsonArray.length()];
+                String[] iconStrings = new String[jsonArray.length()];
+
+                for (int i=0;i<jsonArray.length();i+=1) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    titleStrings[i] = jsonObject.getString("Product");
+                    descStrings[i] = jsonObject.getString("Description");
+
+                    descShortStrings[i] = descStrings[i].substring(0, 30) + "...";
+                    priceStrings[i] = jsonObject.getString("Price" + " Baht");
+                    iconStrings[i] = jsonObject.getString("Image");
+
+                }  // For
+
+//                ProductAdapter productAdapter = new ProductAdapter(context,
+//                        titleStrings,descShortStrings,priceStrings,iconStrings);
+//
+//                myListView.setAdapter(productAdapter);
+
+                MasterAdapter masterAdapter = new MasterAdapter(context, titleStrings,
+                        descShortStrings, priceStrings, iconStrings);
+                myListView.setAdapter(masterAdapter);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
         }  // On post

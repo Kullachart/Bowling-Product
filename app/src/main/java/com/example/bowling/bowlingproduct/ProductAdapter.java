@@ -1,3 +1,5 @@
+package com.example.bowling.bowlingproduct;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,9 +66,6 @@ public class ProductAdapter extends BaseAdapter{
         priceTextView.setText(priceStrings[position]);
 
         Picasso.with(context).load(iconStrings[position]).resize(150, 180).into(imageView);
-
-
-
 
 
         return view;
