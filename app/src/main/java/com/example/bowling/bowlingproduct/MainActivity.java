@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String catuserchooseStrings;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }  // Main Method
 
+    public String[] getCatStrings() {
+        return catStrings;
+    }
 
     @Override
     public void onClick(View v) {
